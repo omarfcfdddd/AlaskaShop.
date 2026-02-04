@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="html-tag">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title id="tab-title">Alaska Network | Shop</title>
+    <link rel="icon" type="image/png" href="https://mayorstudio.xyz/i/KpGc/Alaska-Logo.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --main-blue: #00b4d8;
+            --dark-blue: #001d3d;
+            --ice-white: #caf0f8;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(to bottom, #001d3d, #003566);
+            color: white;
+            overflow-x: hidden;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        /* حاوية الأزرار العلوية */
+        .top-nav {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            left: 20px;
+            display: flex;
+            justify-content: space-between;
+            z-index: 2000;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid var(--main-blue);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .nav-btn:hover {
+            background: var(--main-blue);
+            color: var(--dark-blue);
+            box-shadow: 0 0 15px var(--main-blue);
+        }
+
+        #snow-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .snowflake {
+            position: fixed;
+            color: #fff;
+            user-select: none;
+            z-index: 1000;
+            top: -10px;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall { to { transform: translateY(100vh); } }
+
+        header {
+            padding: 80px 20px 60px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            width: 160px;
+            filter: drop-shadow(0 0 20px var(--main-blue));
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+
+        .ip-box {
+            background: rgba(0, 180, 216, 0.1);
+            padding: 12px 30px;
+            border-radius: 50px;
+            border: 2px dashed var(--main-blue);
+            display: inline-block;
+            margin: 20px 0;
+            font-weight: bold;
+            cursor: pointer;
+            direction: ltr;
+        }
+
+        .shop-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            padding: 20px 10%;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 25px;
+            transition: 0.3s;
+        }
+
+        .card:hover { transform: translateY(-10px); border-color: var(--main-blue); }
+
+        .price { font-size: 1.8rem; font-weight: 900; margin: 15px 0; color: var(--ice-white); }
+
+        .buy-btn {
+            background: linear-gradient(45deg, #0077b6, #00b4d8);
+            color: white;
+            padding: 12px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            display: block;
+        }
+
+        .footer-info { margin: 50px 0; padding: 40px; background: rgba(0,0,0,0.2); }
+
+        footer { padding: 40px; opacity: 0.9; font-size: 1rem; color: white; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .footer-logo { width: 20px; height: 20px; }
+    </style>
+</head>
+<body>
+
+    <div class="top-nav">
+        <a href="https://alaska-network-topaz.vercel.app/" class="nav-btn" id="home-btn">الرجوع للرئيسية</a>
+        <button class="nav-btn" onclick="toggleLanguage()" id="lang-btn">English</button>
+    </div>
+
+    <div id="snow-container"></div>
+
+    <header>
+        <img src="https://mayorstudio.xyz/i/KpGc/Alaska-Logo.png" alt="Alaska Logo" class="logo">
+        <h1 id="main-title">ALASKA NETWORK</h1>
+        <div class="ip-box" onclick="copyIP()">alaskamc.camdvr.org:26378</div>
+    </header>
+
+    <h2 id="ranks-title" style="margin-top:50px;"></h2>
+    <div class="shop-container" id="ranks-grid"></div>
+
+    <h2 id="items-title" style="margin-top:50px;"></h2>
+    <div class="shop-container" id="items-grid"></div>
+
+    <div class="footer-info">
+        <h3 id="footer-q"></h3>
+        <p id="footer-desc"></p>
+        <a href="https://discord.gg/alaskamc" target="_blank" class="buy-btn" style="display:inline-block; padding: 15px 40px;" id="open-ticket"></a>
+    </div>
+
+    <footer>
+        <img src="https://mayorstudio.xyz/i/KpGc/Alaska-Logo.png" class="footer-logo"> 
+        ALASKA NETWORK - Created with Ice 2026 ©
+    </footer>
+
+    <script>
+        let currentLang = 'ar';
+
+        const content = {
+            ar: {
+                langBtn: "English",
+                homeBtn: "الرجوع للرئيسية",
+                ranksTitle: "الرتب المدفوعة 💎",
+                itemsTitle: "🛠️ الأدوات",
+                footerQ: "لو عايز تعرف اكتر أو مهتم؟",
+                footerDesc: "توجه إلى تكت استور في سيرفر الديسكورد",
+                openTicket: "فتح تكت الآن 🎫",
+                buyNow: "شراء الآن",
+                copyMsg: "تم نسخ الآيبي بنجاح!",
+                ranks: [
+                    {n: "ALASKA+", p: "$12"}, {n: "ALASKA", p: "$8"}, {n: "ELITE", p: "$5"}, {n: "VIP+", p: "$3"}, {n: "VIP", p: "$2"}
+                ],
+                items: [
+                    {n: "Alaska Drill", p: "$2"}, {n: "Alaska Axe", p: "$2"}, {n: "Alaska Shovel", p: "$2"}, 
+                    {n: "Jump Feather", p: "$2"}, {n: "Lava bucket", p: "$1.5"}, {n: "Water Bucket", p: "$1.5"}
+                ]
+            },
+            en: {
+                langBtn: "العربية",
+                homeBtn: "Back to Home",
+                ranksTitle: "Paid Ranks 💎",
+                itemsTitle: "🛠️ Items",
+                footerQ: "Want to know more?",
+                footerDesc: "Head over to the Ticket Store in our Discord",
+                openTicket: "Open Ticket Now 🎫",
+                buyNow: "Buy Now",
+                copyMsg: "IP Copied to clipboard!",
+                ranks: [
+                    {n: "ALASKA+", p: "$12"}, {n: "ALASKA", p: "$8"}, {n: "ELITE", p: "$5"}, {n: "VIP+", p: "$3"}, {n: "VIP", p: "$2"}
+                ],
+                items: [
+                    {n: "Alaska Drill", p: "$2"}, {n: "Alaska Axe", p: "$2"}, {n: "Alaska Shovel", p: "$2"}, 
+                    {n: "Jump Feather", p: "$2"}, {n: "Lava bucket", p: "$1.5"}, {n: "Water Bucket", p: "$1.5"}
+                ]
+            }
+        };
+
+        function updateUI() {
+            const lang = content[currentLang];
+            document.getElementById('html-tag').dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+            document.getElementById('lang-btn').innerText = lang.langBtn;
+            document.getElementById('home-btn').innerText = lang.homeBtn;
+            document.getElementById('ranks-title').innerText = lang.ranksTitle;
+            document.getElementById('items-title').innerText = lang.itemsTitle;
+            document.getElementById('footer-q').innerText = lang.footerQ;
+            document.getElementById('footer-desc').innerText = lang.footerDesc;
+            document.getElementById('open-ticket').innerText = lang.openTicket;
+
+            let ranksHTML = '';
+            lang.ranks.forEach(r => {
+                ranksHTML += `<div class="card"><h3>${r.n}</h3><div class="price">${r.p}</div><a href="https://discord.gg/alaskamc" target="_blank" class="buy-btn">${lang.buyNow}</a></div>`;
+            });
+            document.getElementById('ranks-grid').innerHTML = ranksHTML;
+
+            let itemsHTML = '';
+            lang.items.forEach(i => {
+                itemsHTML += `<div class="card"><h3>${i.n}</h3><div class="price">${i.p}</div><a href="https://discord.gg/alaskamc" target="_blank" class="buy-btn">${lang.buyNow}</a></div>`;
+            });
+            document.getElementById('items-grid').innerHTML = itemsHTML;
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            updateUI();
+        }
+
+        function createSnowflake() {
+            const container = document.getElementById('snow-container');
+            const flake = document.createElement('div');
+            flake.innerHTML = '❄';
+            flake.classList.add('snowflake');
+            flake.style.left = Math.random() * 100 + 'vw';
+            flake.style.fontSize = Math.random() * 15 + 10 + 'px';
+            flake.style.opacity = Math.random();
+            flake.style.animationDuration = Math.random() * 3 + 4 + 's';
+            container.appendChild(flake);
+            setTimeout(() => flake.remove(), 5000);
+        }
+        setInterval(createSnowflake, 150);
+
+        function copyIP() {
+            navigator.clipboard.writeText('alaskamc.camdvr.org:26378');
+            alert(content[currentLang].copyMsg);
+        }
+
+        updateUI();
+    </script>
+</body>
+</html>
