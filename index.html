@@ -27,29 +27,31 @@
             transition: all 0.3s ease;
         }
 
-        /* حاوية الأزرار العلوية */
+        /* حاوية الأزرار العلوية - تحسين للجوال */
         .top-nav {
             position: fixed;
-            top: 20px;
-            right: 20px;
-            left: 20px;
+            top: 15px;
+            right: 15px;
+            left: 15px;
             display: flex;
             justify-content: space-between;
             z-index: 2000;
+            gap: 10px;
         }
 
         .nav-btn {
             background: rgba(255, 255, 255, 0.15);
             border: 1px solid var(--main-blue);
             color: white;
-            padding: 10px 20px;
+            padding: 8px 15px;
             border-radius: 30px;
             cursor: pointer;
             backdrop-filter: blur(10px);
             font-weight: bold;
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             transition: 0.3s;
+            white-space: nowrap; /* لمنع انكسار النص */
         }
 
         .nav-btn:hover {
@@ -80,14 +82,15 @@
         @keyframes fall { to { transform: translateY(100vh); } }
 
         header {
-            padding: 80px 20px 60px;
+            padding: 100px 20px 40px;
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(15px);
             border-bottom: 2px solid rgba(255, 255, 255, 0.1);
         }
 
         .logo {
-            width: 160px;
+            width: 140px;
+            max-width: 40%;
             filter: drop-shadow(0 0 20px var(--main-blue));
             animation: float 3s ease-in-out infinite;
         }
@@ -96,7 +99,7 @@
 
         .ip-box {
             background: rgba(0, 180, 216, 0.1);
-            padding: 12px 30px;
+            padding: 10px 20px;
             border-radius: 50px;
             border: 2px dashed var(--main-blue);
             display: inline-block;
@@ -104,41 +107,80 @@
             font-weight: bold;
             cursor: pointer;
             direction: ltr;
+            font-size: 0.9rem;
+            max-width: 90%;
+            word-break: break-all;
         }
 
         .shop-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-            padding: 20px 10%;
+            /* تم تعديل هذا السطر ليدعم الموبايل بذكاء */
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 15px;
+            padding: 20px 5%;
         }
 
         .card {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 20px;
-            padding: 25px;
+            padding: 20px 15px;
             transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        .card:hover { transform: translateY(-10px); border-color: var(--main-blue); }
+        .card h3 { font-size: 1.1rem; margin: 0; }
 
-        .price { font-size: 1.8rem; font-weight: 900; margin: 15px 0; color: var(--ice-white); }
+        .card:hover { transform: translateY(-5px); border-color: var(--main-blue); }
+
+        .price { font-size: 1.5rem; font-weight: 900; margin: 10px 0; color: var(--ice-white); }
 
         .buy-btn {
             background: linear-gradient(45deg, #0077b6, #00b4d8);
             color: white;
-            padding: 12px;
+            padding: 10px;
             border-radius: 12px;
             text-decoration: none;
             font-weight: bold;
             display: block;
+            font-size: 0.9rem;
         }
 
-        .footer-info { margin: 50px 0; padding: 40px; background: rgba(0,0,0,0.2); }
+        .footer-info { 
+            margin: 40px 15px; 
+            padding: 30px 15px; 
+            background: rgba(0,0,0,0.2); 
+            border-radius: 20px;
+        }
 
-        footer { padding: 40px; opacity: 0.9; font-size: 1rem; color: white; display: flex; align-items: center; justify-content: center; gap: 8px; }
-        .footer-logo { width: 20px; height: 20px; }
+        .footer-info h3 { font-size: 1.2rem; }
+        .footer-info p { font-size: 0.9rem; }
+
+        footer { 
+            padding: 30px 15px; 
+            opacity: 0.9; 
+            font-size: 0.85rem; 
+            color: white; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            flex-wrap: wrap;
+            gap: 8px; 
+        }
+        .footer-logo { width: 18px; height: 18px; }
+
+        /* شاشات الموبايل الصغيرة جداً */
+        @media (max-width: 400px) {
+            .shop-container {
+                grid-template-columns: 1fr; /* كرت واحد في السطر */
+            }
+            .top-nav {
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body>
@@ -152,20 +194,20 @@
 
     <header>
         <img src="https://mayorstudio.xyz/i/KpGc/Alaska-Logo.png" alt="Alaska Logo" class="logo">
-        <h1 id="main-title">ALASKA NETWORK</h1>
+        <h1 id="main-title" style="font-size: 1.8rem; margin: 10px 0;">ALASKA NETWORK</h1>
         <div class="ip-box" onclick="copyIP()">alaskamc.camdvr.org:26378</div>
     </header>
 
-    <h2 id="ranks-title" style="margin-top:50px;"></h2>
+    <h2 id="ranks-title" style="margin-top:40px; font-size: 1.5rem;"></h2>
     <div class="shop-container" id="ranks-grid"></div>
 
-    <h2 id="items-title" style="margin-top:50px;"></h2>
+    <h2 id="items-title" style="margin-top:40px; font-size: 1.5rem;"></h2>
     <div class="shop-container" id="items-grid"></div>
 
     <div class="footer-info">
         <h3 id="footer-q"></h3>
         <p id="footer-desc"></p>
-        <a href="https://discord.gg/alaskamc" target="_blank" class="buy-btn" style="display:inline-block; padding: 15px 40px;" id="open-ticket"></a>
+        <a href="https://discord.gg/alaskamc" target="_blank" class="buy-btn" style="display:inline-block; padding: 12px 30px;" id="open-ticket"></a>
     </div>
 
     <footer>
@@ -179,11 +221,11 @@
         const content = {
             ar: {
                 langBtn: "English",
-                homeBtn: "الرجوع للرئيسية",
+                homeBtn: "الرئيسية",
                 ranksTitle: "الرتب المدفوعة 💎",
                 itemsTitle: "🛠️ الأدوات",
-                footerQ: "لو عايز تعرف اكتر أو مهتم؟",
-                footerDesc: "توجه إلى تكت استور في سيرفر الديسكورد",
+                footerQ: "لو عايز تعرف اكتر؟",
+                footerDesc: "توجه إلى تكت استور في الديسكورد",
                 openTicket: "فتح تكت الآن 🎫",
                 buyNow: "شراء الآن",
                 copyMsg: "تم نسخ الآيبي بنجاح!",
@@ -197,11 +239,11 @@
             },
             en: {
                 langBtn: "العربية",
-                homeBtn: "Back to Home",
+                homeBtn: "Home",
                 ranksTitle: "Paid Ranks 💎",
                 itemsTitle: "🛠️ Items",
                 footerQ: "Want to know more?",
-                footerDesc: "Head over to the Ticket Store in our Discord",
+                footerDesc: "Head over to the Ticket Store in Discord",
                 openTicket: "Open Ticket Now 🎫",
                 buyNow: "Buy Now",
                 copyMsg: "IP Copied to clipboard!",
@@ -246,20 +288,22 @@
 
         function createSnowflake() {
             const container = document.getElementById('snow-container');
+            if(!container) return;
             const flake = document.createElement('div');
             flake.innerHTML = '❄';
             flake.classList.add('snowflake');
             flake.style.left = Math.random() * 100 + 'vw';
-            flake.style.fontSize = Math.random() * 15 + 10 + 'px';
+            flake.style.fontSize = Math.random() * 12 + 8 + 'px';
             flake.style.opacity = Math.random();
             flake.style.animationDuration = Math.random() * 3 + 4 + 's';
             container.appendChild(flake);
             setTimeout(() => flake.remove(), 5000);
         }
-        setInterval(createSnowflake, 150);
+        setInterval(createSnowflake, 200);
 
         function copyIP() {
-            navigator.clipboard.writeText('alaskamc.camdvr.org:26378');
+            const ip = 'alaskamc.camdvr.org:26378';
+            navigator.clipboard.writeText(ip);
             alert(content[currentLang].copyMsg);
         }
 
