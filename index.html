@@ -1,313 +1,290 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" id="html-tag">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title id="tab-title">Alaska Network | Shop</title>
-    <link rel="icon" type="image/png" href="https://mayorstudio.xyz/i/KpGc/Alaska-Logo.png">
+    <title>Alaska Network | Shop</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="https://mayorstudio.xyz/i/KpGc/Alaska-Logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --main-blue: #00b4d8;
-            --dark-blue: #001d3d;
-            --ice-white: #caf0f8;
+            --primary-blue: #00d2ff;
+            --dark-overlay: rgba(5, 10, 20, 0.95);
+        }
+
+        /* أنيميشن النبض المستمر */
+        @keyframes pulse {
+            0% { transform: scale(1); filter: drop-shadow(0 0 15px var(--primary-blue)); }
+            50% { transform: scale(1.05); filter: drop-shadow(0 0 25px var(--primary-blue)); }
+            100% { transform: scale(1); filter: drop-shadow(0 0 15px var(--primary-blue)); }
+        }
+
+        /* أنيميشن الاهتزاز الخفيف */
+        @keyframes shake {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(1deg); }
+            50% { transform: rotate(-1deg); }
+            75% { transform: rotate(1deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        /* حركة عائمة للايبي */
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0px); }
         }
 
         body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Cairo', sans-serif;
-            background: linear-gradient(to bottom, #001d3d, #003566);
-            color: white;
-            overflow-x: hidden;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        /* حاوية الأزرار العلوية - تحسين للجوال */
-        .top-nav {
-            position: fixed;
-            top: 15px;
-            right: 15px;
-            left: 15px;
-            display: flex;
-            justify-content: space-between;
-            z-index: 2000;
-            gap: 10px;
-        }
-
-        .nav-btn {
-            background: rgba(255, 255, 255, 0.15);
-            border: 1px solid var(--main-blue);
-            color: white;
-            padding: 8px 15px;
-            border-radius: 30px;
-            cursor: pointer;
-            backdrop-filter: blur(10px);
-            font-weight: bold;
-            text-decoration: none;
-            font-size: 0.85rem;
-            transition: 0.3s;
-            white-space: nowrap; /* لمنع انكسار النص */
-        }
-
-        .nav-btn:hover {
-            background: var(--main-blue);
-            color: var(--dark-blue);
-            box-shadow: 0 0 15px var(--main-blue);
+            margin: 0; padding: 0; font-family: 'Cairo', sans-serif;
+            background: #02050a url('https://mayorstudio.xyz/i/N8Dj/minecraft-1106252_1280.jpg') no-repeat center center fixed;
+            background-size: cover; color: white; overflow-x: hidden;
         }
 
         #snow-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1000;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 1000;
         }
 
-        .snowflake {
-            position: fixed;
-            color: #fff;
-            user-select: none;
-            z-index: 1000;
-            top: -10px;
-            animation: fall linear forwards;
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(0, 0, 0, 0.85); padding: 10px 20px;
+            backdrop-filter: blur(10px); border-bottom: 2px solid var(--primary-blue);
+            position: sticky; top: 0; z-index: 2000;
         }
 
-        @keyframes fall { to { transform: translateY(100vh); } }
+        .nav-links a { color: white; text-decoration: none; margin: 0 10px; font-weight: bold; font-size: 14px; }
 
-        header {
-            padding: 100px 20px 40px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        header { 
+            display: flex; flex-direction: column; align-items: center; 
+            justify-content: center; text-align: center; padding: 60px 10px; 
+        }
+        
+        /* تطبيق الأنيميشن على الشعار */
+        .logo { 
+            width: 250px; max-width: 90%; 
+            animation: pulse 3s infinite ease-in-out;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin-bottom: 20px;
         }
 
-        .logo {
-            width: 140px;
-            max-width: 40%;
-            filter: drop-shadow(0 0 20px var(--main-blue));
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
-
-        .ip-box {
-            background: rgba(0, 180, 216, 0.1);
-            padding: 10px 20px;
-            border-radius: 50px;
-            border: 2px dashed var(--main-blue);
-            display: inline-block;
-            margin: 20px 0;
-            font-weight: bold;
+        .logo:hover {
+            animation: shake 0.5s infinite linear;
             cursor: pointer;
-            direction: ltr;
-            font-size: 0.9rem;
-            max-width: 90%;
-            word-break: break-all;
+            transform: scale(1.1);
         }
 
-        .shop-container {
-            display: grid;
-            /* تم تعديل هذا السطر ليدعم الموبايل بذكاء */
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 15px;
-            padding: 20px 5%;
+        .ip-container {
+            cursor: pointer; display: flex; flex-direction: column; align-items: center;
+            padding: 10px 25px; background: rgba(0, 210, 255, 0.15);
+            border-radius: 30px; border: 2px dashed var(--primary-blue);
+            animation: floating 3s infinite ease-in-out;
+            transition: 0.3s; position: relative; max-width: fit-content;
         }
 
-        .card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 20px 15px;
-            transition: 0.3s;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+        .ip-container:hover {
+            background: rgba(0, 210, 255, 0.3);
+            transform: scale(1.05) !important;
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.4);
         }
 
-        .card h3 { font-size: 1.1rem; margin: 0; }
+        .ip-text { font-weight: bold; color: var(--primary-blue); font-size: 16px; margin: 0; }
 
-        .card:hover { transform: translateY(-5px); border-color: var(--main-blue); }
+        .copy-tooltip {
+            position: absolute; bottom: -35px; left: 50%; transform: translateX(-50%);
+            background: #00ffaa; color: black; padding: 4px 12px;
+            border-radius: 8px; font-size: 13px; font-weight: bold;
+            display: none; box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
 
-        .price { font-size: 1.5rem; font-weight: 900; margin: 10px 0; color: var(--ice-white); }
+        .section-title {
+            text-align: center; font-size: 2rem; margin: 40px 0;
+            text-shadow: 0 0 15px var(--primary-blue);
+        }
+
+        .grid-container {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px; max-width: 1200px; margin: 0 auto 60px; padding: 0 20px;
+        }
+
+        .item-card {
+            background: var(--dark-overlay); border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px; padding: 30px; display: flex; flex-direction: column;
+            align-items: center; text-align: center; transition: 0.4s;
+        }
+
+        .item-card:hover {
+            transform: translateY(-10px); border-color: var(--primary-blue);
+            box-shadow: 0 15px 35px rgba(0, 210, 255, 0.25);
+        }
+
+        .item-img {
+            width: 100px; height: 100px; image-rendering: pixelated;
+            object-fit: contain; margin-bottom: 20px;
+        }
+
+        .price-tag { font-size: 2rem; color: #00ffaa; font-weight: 900; margin: 15px 0; display: block; }
 
         .buy-btn {
-            background: linear-gradient(45deg, #0077b6, #00b4d8);
-            color: white;
-            padding: 10px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: bold;
-            display: block;
-            font-size: 0.9rem;
+            display: block; text-decoration: none; background: var(--primary-blue);
+            color: white; padding: 14px 0; width: 100%; max-width: 220px;
+            border-radius: 10px; font-weight: bold; transition: 0.3s;
         }
 
-        .footer-info { 
-            margin: 40px 15px; 
-            padding: 30px 15px; 
-            background: rgba(0,0,0,0.2); 
-            border-radius: 20px;
-        }
+        .buy-btn:hover { background: #0081cc; transform: scale(1.03); }
 
-        .footer-info h3 { font-size: 1.2rem; }
-        .footer-info p { font-size: 0.9rem; }
+        footer { text-align: center; padding: 40px; background: rgba(0,0,0,0.9); font-size: 15px; border-top: 1px solid rgba(0,210,255,0.2); }
 
-        footer { 
-            padding: 30px 15px; 
-            opacity: 0.9; 
-            font-size: 0.85rem; 
-            color: white; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            flex-wrap: wrap;
-            gap: 8px; 
-        }
-        .footer-logo { width: 18px; height: 18px; }
-
-        /* شاشات الموبايل الصغيرة جداً */
-        @media (max-width: 400px) {
-            .shop-container {
-                grid-template-columns: 1fr; /* كرت واحد في السطر */
-            }
-            .top-nav {
-                flex-direction: row;
-                justify-content: center;
-            }
+        @media (max-width: 600px) {
+            .logo { width: 200px; }
+            .section-title { font-size: 1.6rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="top-nav">
-        <a href="https://alaska-network-topaz.vercel.app/" class="nav-btn" id="home-btn">الرجوع للرئيسية</a>
-        <button class="nav-btn" onclick="toggleLanguage()" id="lang-btn">English</button>
+<div id="snow-container"></div>
+
+<nav>
+    <div class="nav-links">
+        <a href="https://alaska-network-topaz.vercel.app/" data-key="home">الرئيسية</a>
+        <a href="https://discord.gg/alaskamc" data-key="discord">ديسكورد</a>
     </div>
+    <button id="lang-btn" class="lang-btn" onclick="toggleLanguage()" style="background:var(--primary-blue); color:white; border:none; padding:6px 12px; border-radius:6px; cursor:pointer; font-weight:bold;">EN</button>
+</nav>
 
-    <div id="snow-container"></div>
-
-    <header>
-        <img src="https://mayorstudio.xyz/i/KpGc/Alaska-Logo.png" alt="Alaska Logo" class="logo">
-        <h1 id="main-title" style="font-size: 1.8rem; margin: 10px 0;">ALASKA NETWORK</h1>
-        <div class="ip-box" onclick="copyIP()">alaskamc.camdvr.org:26378</div>
-    </header>
-
-    <h2 id="ranks-title" style="margin-top:40px; font-size: 1.5rem;"></h2>
-    <div class="shop-container" id="ranks-grid"></div>
-
-    <h2 id="items-title" style="margin-top:40px; font-size: 1.5rem;"></h2>
-    <div class="shop-container" id="items-grid"></div>
-
-    <div class="footer-info">
-        <h3 id="footer-q"></h3>
-        <p id="footer-desc"></p>
-        <a href="https://discord.gg/alaskamc" target="_blank" class="buy-btn" style="display:inline-block; padding: 12px 30px;" id="open-ticket"></a>
+<header>
+    <img src="https://mayorstudio.xyz/i/KpGc/Alaska-Logo.png" alt="Alaska Logo" class="logo">
+    
+    <div class="ip-container" onclick="copyIP()">
+        <p class="ip-text">IP: <span id="server-ip">alaskamc.ddns.net:26378</span></p>
+        <span id="copy-msg" class="copy-tooltip">تم النسخ!</span>
     </div>
+</header>
 
-    <footer>
-        <img src="https://mayorstudio.xyz/i/KpGc/Alaska-Logo.png" class="footer-logo"> 
-        ALASKA NETWORK - Created with Ice 2026 ©
-    </footer>
+<h2 class="section-title" data-key="ranks_title">💎 الرتب المدفوعة</h2>
+<div class="grid-container">
+    <div class="item-card">
+        <img src="https://mayorstudio.xyz/i/hMW1/Netherite_Ingot_JE1_BE2.png" class="item-img" alt="Netherite">
+        <h3>ALASKA+</h3>
+        <span class="price-tag">$12</span>
+        <a href="https://discord.gg/alaskamc" class="buy-btn" data-key="buy">شراء الآن</a>
+    </div>
+    <div class="item-card">
+        <img src="https://minecraft.wiki/images/Diamond_JE3_BE3.png" class="item-img" alt="Diamond">
+        <h3>ALASKA</h3>
+        <span class="price-tag">$8</span>
+        <a href="https://discord.gg/alaskamc" class="buy-btn" data-key="buy">شراء الآن</a>
+    </div>
+    <div class="item-card">
+        <img src="https://minecraft.wiki/images/Gold_Ingot_JE4_BE2.png" class="item-img" alt="Gold">
+        <h3>ELITE</h3>
+        <span class="price-tag">$5</span>
+        <a href="https://discord.gg/alaskamc" class="buy-btn" data-key="buy">شراء الآن</a>
+    </div>
+    <div class="item-card">
+        <img src="https://mayorstudio.xyz/i/oxUk/Iron_Ingot_JE3_BE2.png" class="item-img" alt="Iron">
+        <h3>VIP+</h3>
+        <span class="price-tag">$3</span>
+        <a href="https://discord.gg/alaskamc" class="buy-btn" data-key="buy">شراء الآن</a>
+    </div>
+    <div class="item-card">
+        <img src="https://minecraft.wiki/images/Coal_JE4_BE3.png" class="item-img" alt="Coal">
+        <h3>VIP</h3>
+        <span class="price-tag">$2</span>
+        <a href="https://discord.gg/alaskamc" class="buy-btn" data-key="buy">شراء الآن</a>
+    </div>
+</div>
 
-    <script>
-        let currentLang = 'ar';
+<h2 class="section-title" data-key="tools_title">🛠️ الأدوات</h2>
+<div class="grid-container">
+    <div class="item-card">
+        <img src="https://minecraft.wiki/images/Netherite_Pickaxe_JE3_BE2.png" class="item-img">
+        <h3 data-key="tool1">Alaska Drill</h3>
+        <span class="price-tag">$2</span>
+        <a href="https://discord.gg/alaskamc" class="buy-btn" data-key="buy">شراء الآن</a>
+    </div>
+    <div class="item-card">
+        <img src="https://minecraft.wiki/images/Netherite_Axe_JE2_BE2.png" class="item-img">
+        <h3 data-key="tool2">Alaska Axe</h3>
+        <span class="price-tag">$2</span>
+        <a href="https://discord.gg/alaskamc" class="buy-btn" data-key="buy">شراء الآن</a>
+    </div>
+    <div class="item-card">
+        <img src="https://mayorstudio.xyz/i/OQub/Netherite_Shovel_JE2_BE1.png" class="item-img">
+        <h3 data-key="tool3">Alaska Shovel</h3>
+        <span class="price-tag">$2</span>
+        <a href="https://discord.gg/alaskamc" class="buy-btn" data-key="buy">شراء الآن</a>
+    </div>
+    <div class="item-card">
+        <img src="https://minecraft.wiki/images/Feather_JE3_BE2.png" class="item-img">
+        <h3 data-key="tool4">Jump Feather</h3>
+        <span class="price-tag">$2</span>
+        <a href="https://discord.gg/alaskamc" class="buy-btn" data-key="buy">شراء الآن</a>
+    </div>
+    <div class="item-card">
+        <img src="https://minecraft.wiki/images/Lava_Bucket_JE2_BE2.png" class="item-img">
+        <h3 data-key="tool5">Lava bucket</h3>
+        <span class="price-tag">$1.5</span>
+        <a href="https://discord.gg/alaskamc" class="buy-btn" data-key="buy">شراء الآن</a>
+    </div>
+    <div class="item-card">
+        <img src="https://minecraft.wiki/images/Water_Bucket_JE2_BE2.png" class="item-img">
+        <h3 data-key="tool6">Water Bucket</h3>
+        <span class="price-tag">$1.5</span>
+        <a href="https://discord.gg/alaskamc" class="buy-btn" data-key="buy">شراء الآن</a>
+    </div>
+</div>
 
-        const content = {
-            ar: {
-                langBtn: "English",
-                homeBtn: "الرئيسية",
-                ranksTitle: "الرتب المدفوعة 💎",
-                itemsTitle: "🛠️ الأدوات",
-                footerQ: "لو عايز تعرف اكتر؟",
-                footerDesc: "توجه إلى تكت استور في الديسكورد",
-                openTicket: "فتح تكت الآن 🎫",
-                buyNow: "شراء الآن",
-                copyMsg: "تم نسخ الآيبي بنجاح!",
-                ranks: [
-                    {n: "ALASKA+", p: "$12"}, {n: "ALASKA", p: "$8"}, {n: "ELITE", p: "$5"}, {n: "VIP+", p: "$3"}, {n: "VIP", p: "$2"}
-                ],
-                items: [
-                    {n: "Alaska Drill", p: "$2"}, {n: "Alaska Axe", p: "$2"}, {n: "Alaska Shovel", p: "$2"}, 
-                    {n: "Jump Feather", p: "$2"}, {n: "Lava bucket", p: "$1.5"}, {n: "Water Bucket", p: "$1.5"}
-                ]
-            },
-            en: {
-                langBtn: "العربية",
-                homeBtn: "Home",
-                ranksTitle: "Paid Ranks 💎",
-                itemsTitle: "🛠️ Items",
-                footerQ: "Want to know more?",
-                footerDesc: "Head over to the Ticket Store in Discord",
-                openTicket: "Open Ticket Now 🎫",
-                buyNow: "Buy Now",
-                copyMsg: "IP Copied to clipboard!",
-                ranks: [
-                    {n: "ALASKA+", p: "$12"}, {n: "ALASKA", p: "$8"}, {n: "ELITE", p: "$5"}, {n: "VIP+", p: "$3"}, {n: "VIP", p: "$2"}
-                ],
-                items: [
-                    {n: "Alaska Drill", p: "$2"}, {n: "Alaska Axe", p: "$2"}, {n: "Alaska Shovel", p: "$2"}, 
-                    {n: "Jump Feather", p: "$2"}, {n: "Lava bucket", p: "$1.5"}, {n: "Water Bucket", p: "$1.5"}
-                ]
-            }
-        };
+<footer>
+    <p>Alaska Network © 2026</p>
+</footer>
 
-        function updateUI() {
-            const lang = content[currentLang];
-            document.getElementById('html-tag').dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-            document.getElementById('lang-btn').innerText = lang.langBtn;
-            document.getElementById('home-btn').innerText = lang.homeBtn;
-            document.getElementById('ranks-title').innerText = lang.ranksTitle;
-            document.getElementById('items-title').innerText = lang.itemsTitle;
-            document.getElementById('footer-q').innerText = lang.footerQ;
-            document.getElementById('footer-desc').innerText = lang.footerDesc;
-            document.getElementById('open-ticket').innerText = lang.openTicket;
+<script>
+    function copyIP() {
+        const ip = document.getElementById('server-ip').innerText;
+        navigator.clipboard.writeText(ip).then(() => {
+            const msg = document.getElementById('copy-msg');
+            msg.style.display = 'block';
+            setTimeout(() => { msg.style.display = 'none'; }, 2000);
+        });
+    }
 
-            let ranksHTML = '';
-            lang.ranks.forEach(r => {
-                ranksHTML += `<div class="card"><h3>${r.n}</h3><div class="price">${r.p}</div><a href="https://discord.gg/alaskamc" target="_blank" class="buy-btn">${lang.buyNow}</a></div>`;
-            });
-            document.getElementById('ranks-grid').innerHTML = ranksHTML;
+    const translations = {
+        ar: { home: "الرئيسية", discord: "ديسكورد", ranks_title: "💎 الرتب المدفوعة", tools_title: "🛠️ الأدوات", buy: "شراء الآن", tool1: "Alaska Drill", tool2: "Alaska Axe", tool3: "Alaska Shovel", tool4: "Jump Feather", tool5: "Lava bucket", tool6: "Water Bucket", langBtn: "EN", copied: "تم النسخ!" },
+        en: { home: "Home", discord: "Discord", ranks_title: "💎 Paid Ranks", tools_title: "🛠️ Tools", buy: "Buy Now", tool1: "Alaska Drill", tool2: "Alaska Axe", tool3: "Alaska Shovel", tool4: "Jump Feather", tool5: "Lava bucket", tool6: "Water Bucket", langBtn: "AR", copied: "Copied!" }
+    };
 
-            let itemsHTML = '';
-            lang.items.forEach(i => {
-                itemsHTML += `<div class="card"><h3>${i.n}</h3><div class="price">${i.p}</div><a href="https://discord.gg/alaskamc" target="_blank" class="buy-btn">${lang.buyNow}</a></div>`;
-            });
-            document.getElementById('items-grid').innerHTML = itemsHTML;
-        }
+    let currentLang = 'ar';
+    function toggleLanguage() {
+        currentLang = currentLang === 'ar' ? 'en' : 'ar';
+        document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+        document.documentElement.lang = currentLang;
+        document.querySelectorAll('[data-key]').forEach(el => { el.innerText = translations[currentLang][el.getAttribute('data-key')]; });
+        document.getElementById('lang-btn').innerText = translations[currentLang].langBtn;
+        document.getElementById('copy-msg').innerText = translations[currentLang].copied;
+    }
 
-        function toggleLanguage() {
-            currentLang = currentLang === 'ar' ? 'en' : 'ar';
-            updateUI();
-        }
+    function createSnowflake() {
+        const snowflake = document.createElement('div');
+        snowflake.innerHTML = '❄';
+        snowflake.style.position = 'fixed';
+        snowflake.style.top = '-20px';
+        snowflake.style.left = Math.random() * window.innerWidth + 'px';
+        snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
+        snowflake.style.color = 'white';
+        snowflake.style.opacity = Math.random();
+        snowflake.style.zIndex = '1500';
+        document.getElementById('snow-container').appendChild(snowflake);
+        let duration = Math.random() * 3 + 4;
+        snowflake.animate([{ transform: 'translateY(0)' }, { transform: `translateY(${window.innerHeight + 20}px)` }], { duration: duration * 1000 });
+        setTimeout(() => snowflake.remove(), duration * 1000);
+    }
+    setInterval(createSnowflake, 150);
+</script>
 
-        function createSnowflake() {
-            const container = document.getElementById('snow-container');
-            if(!container) return;
-            const flake = document.createElement('div');
-            flake.innerHTML = '❄';
-            flake.classList.add('snowflake');
-            flake.style.left = Math.random() * 100 + 'vw';
-            flake.style.fontSize = Math.random() * 12 + 8 + 'px';
-            flake.style.opacity = Math.random();
-            flake.style.animationDuration = Math.random() * 3 + 4 + 's';
-            container.appendChild(flake);
-            setTimeout(() => flake.remove(), 5000);
-        }
-        setInterval(createSnowflake, 200);
-
-        function copyIP() {
-            const ip = 'alaskamc.camdvr.org:26378';
-            navigator.clipboard.writeText(ip);
-            alert(content[currentLang].copyMsg);
-        }
-
-        updateUI();
-    </script>
 </body>
 </html>
