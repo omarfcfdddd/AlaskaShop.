@@ -16,7 +16,7 @@
             --success-green: #00ffaa;
         }
 
-        /* تأثيرات الحركة */
+        /* أنيميشن الشعار والايبي */
         @keyframes pulse {
             0% { transform: scale(1); filter: drop-shadow(0 0 15px var(--primary-blue)); }
             50% { transform: scale(1.05); filter: drop-shadow(0 0 25px var(--primary-blue)); }
@@ -101,15 +101,17 @@
             box-shadow: 0 15px 35px rgba(0, 210, 255, 0.25);
         }
 
-        .item-img { width: 100px; height: 100px; image-rendering: pixelated; object-fit: contain; margin-bottom: 20px; }
+        .item-img { width: 90px; height: 90px; image-rendering: pixelated; object-fit: contain; margin-bottom: 20px; }
 
-        .price-tag { font-size: 2rem; color: var(--success-green); font-weight: 900; margin: 15px 0; display: block; }
+        .price-tag { font-size: 1.8rem; color: var(--success-green); font-weight: 900; margin: 15px 0; display: block; }
 
         .buy-btn {
             display: block; text-decoration: none; background: var(--primary-blue);
-            color: white; padding: 14px 0; width: 100%; max-width: 220px;
+            color: white; padding: 12px 0; width: 100%; max-width: 200px;
             border-radius: 10px; font-weight: bold; transition: 0.3s;
         }
+
+        .buy-btn:hover { background: #0081cc; transform: scale(1.05); }
 
         /* تنسيق الجدول */
         .features-table-wrapper { overflow-x: auto; max-width: 1100px; margin: 0 auto 80px; padding: 0 20px; }
@@ -170,39 +172,24 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td class="feature-name" data-key="p1">طيران في السباون (/Fly)</td>
-                <td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td>
-            </tr>
-            <tr>
-                <td class="feature-name" data-key="p2">أمر الدوران (/Spin)</td>
-                <td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td>
-            </tr>
-            <tr>
-                <td class="feature-name" data-key="p3">دخول السيرفر الممتلئ</td>
-                <td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td>
-            </tr>
-            <tr>
-                <td class="feature-name" data-key="p6">كيت خاص (Special Kit)</td>
-                <td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td>
-            </tr>
-            <tr>
-                <td class="feature-name" data-key="p4">بريفكس خاص (Prefix)</td>
-                <td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td>
-            </tr>
-            <tr>
-                <td class="feature-name" data-key="p5">لون شات مميز</td>
-                <td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td>
-            </tr>
+            <tr><td class="feature-name" data-key="p1">طيران في السباون (/Fly)</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td class="feature-name" data-key="p2">أمر الدوران (/Spin)</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td class="feature-name" data-key="p3">دخول السيرفر الممتلئ</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td class="feature-name" data-key="p6">كيت خاص (Special Kit)</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td class="feature-name" data-key="p4">بريفكس خاص (Prefix)</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
+            <tr><td class="feature-name" data-key="p5">لون شات مميز</td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td></tr>
         </tbody>
     </table>
 </div>
 
 <h2 class="section-title" data-key="tools_title">🛠️ الأدوات</h2>
 <div class="grid-container">
-    <div class="item-card"><img src="https://minecraft.wiki/images/Netherite_Pickaxe_JE3_BE2.png" class="item-img"><h3>Alaska Drill</h3><span class="price-tag">$2</span><a href="https://discord.gg/alaskamc" class="buy-btn" data-key="buy">شراء الآن</a></div>
-    <div class="item-card"><img src="https://minecraft.wiki/images/Netherite_Axe_JE2_BE2.png" class="item-img"><h3>Alaska Axe</h3><span class="price-tag">$2</span><a href="https://discord.gg/alaskamc" class="buy-btn" data-key="buy">شراء الآن</a></div>
-    <div class="item-card"><img src="https://mayorstudio.xyz/i/OQub/Netherite_Shovel_JE2_BE1.png" class="item-img"><h3>Alaska Shovel</h3><span class="price-tag">$2</span><a href="https://discord.gg/alaskamc" class="buy-btn" data-key="buy">شراء الآن</a></div>
+    <div class="item-card"><img src="https://minecraft.wiki/images/Netherite_Pickaxe_JE3_BE2.png" class="item-img"><h3 data-key="tool1">Alaska Drill</h3><span class="price-tag">$2</span><a href="https://discord.gg/alaskamc" class="buy-btn" data-key="buy">شراء الآن</a></div>
+    <div class="item-card"><img src="https://minecraft.wiki/images/Netherite_Axe_JE2_BE2.png" class="item-img"><h3 data-key="tool2">Alaska Axe</h3><span class="price-tag">$2</span><a href="https://discord.gg/alaskamc" class="buy-btn" data-key="buy">شراء الآن</a></div>
+    <div class="item-card"><img src="https://mayorstudio.xyz/i/OQub/Netherite_Shovel_JE2_BE1.png" class="item-img"><h3 data-key="tool3">Alaska Shovel</h3><span class="price-tag">$2</span><a href="https://discord.gg/alaskamc" class="buy-btn" data-key="buy">شراء الآن</a></div>
+    <div class="item-card"><img src="https://minecraft.wiki/images/Feather_JE3_BE2.png" class="item-img"><h3 data-key="tool4">Jump Feather</h3><span class="price-tag">$2</span><a href="https://discord.gg/alaskamc" class="buy-btn" data-key="buy">شراء الآن</a></div>
+    <div class="item-card"><img src="https://minecraft.wiki/images/Lava_Bucket_JE2_BE2.png" class="item-img"><h3 data-key="tool5">Lava bucket</h3><span class="price-tag">$1.5</span><a href="https://discord.gg/alaskamc" class="buy-btn" data-key="buy">شراء الآن</a></div>
+    <div class="item-card"><img src="https://minecraft.wiki/images/Water_Bucket_JE2_BE2.png" class="item-img"><h3 data-key="tool6">Water Bucket</h3><span class="price-tag">$1.5</span><a href="https://discord.gg/alaskamc" class="buy-btn" data-key="buy">شراء الآن</a></div>
 </div>
 
 <footer><p>Alaska Network © 2026</p></footer>
@@ -212,14 +199,14 @@
         ar: {
             home: "الرئيسية", discord: "ديسكورد", ranks_title: "💎 الرتب المدفوعة", features_title: "📊 مميزات الرتب", tools_title: "🛠️ الأدوات",
             buy: "شراء الآن", t_perk: "المميزات", p1: "طيران في السباون (/Fly)", p2: "أمر الدوران (/Spin)", p3: "دخول السيرفر الممتلئ", 
-            p4: "بريفكس خاص (Prefix)", p5: "لون شات مميز", p6: "كيت خاص (Special Kit)",
-            langBtn: "EN", copied: "تم النسخ!"
+            p4: "بريفكس خاص (Prefix)", p5: "لون شات مميز", p6: "كيت خاص (Special Kit)", langBtn: "EN", copied: "تم النسخ!",
+            tool1: "Alaska Drill", tool2: "Alaska Axe", tool3: "Alaska Shovel", tool4: "Jump Feather", tool5: "Lava bucket", tool6: "Water Bucket"
         },
         en: {
             home: "Home", discord: "Discord", ranks_title: "💎 Paid Ranks", features_title: "📊 Rank Features", tools_title: "🛠️ Tools",
             buy: "Buy Now", t_perk: "Perks", p1: "Hub Fly (/Fly)", p2: "Spin Command (/Spin)", p3: "Join Full Server", 
-            p4: "Special Prefix", p5: "Special Chat Color", p6: "Special Kit",
-            langBtn: "AR", copied: "Copied!"
+            p4: "Special Prefix", p5: "Special Chat Color", p6: "Special Kit", langBtn: "AR", copied: "Copied!",
+            tool1: "Alaska Drill", tool2: "Alaska Axe", tool3: "Alaska Shovel", tool4: "Jump Feather", tool5: "Lava bucket", tool6: "Water Bucket"
         }
     };
 
