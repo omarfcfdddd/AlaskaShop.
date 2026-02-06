@@ -16,7 +16,7 @@
             --success-green: #00ffaa;
         }
 
-        /* أنيميشن النبض والاهتزاز للشعار */
+        /* تأثيرات الحركة */
         @keyframes pulse {
             0% { transform: scale(1); filter: drop-shadow(0 0 15px var(--primary-blue)); }
             50% { transform: scale(1.05); filter: drop-shadow(0 0 25px var(--primary-blue)); }
@@ -33,7 +33,6 @@
             margin: 0; padding: 0; font-family: 'Cairo', sans-serif;
             background: #02050a url('https://mayorstudio.xyz/i/N8Dj/minecraft-1106252_1280.jpg') no-repeat center center fixed;
             background-size: cover; color: white; overflow-x: hidden;
-            transition: direction 0.3s ease;
         }
 
         #snow-container {
@@ -64,7 +63,6 @@
 
         .logo:hover { transform: scale(1.1) rotate(2deg); cursor: pointer; }
 
-        /* حاوية الأيبي */
         .ip-container {
             cursor: pointer; display: flex; flex-direction: column; align-items: center;
             padding: 10px 25px; background: rgba(0, 210, 255, 0.15);
@@ -72,8 +70,6 @@
             animation: floating 3s infinite ease-in-out;
             transition: 0.3s; position: relative;
         }
-
-        .ip-container:hover { background: rgba(0, 210, 255, 0.3); transform: scale(1.05); }
 
         .ip-text { font-weight: bold; color: var(--primary-blue); font-size: 16px; margin: 0; }
 
@@ -115,18 +111,13 @@
             border-radius: 10px; font-weight: bold; transition: 0.3s;
         }
 
-        .buy-btn:hover { background: #0081cc; transform: scale(1.05); }
-
         /* تنسيق الجدول */
         .features-table-wrapper { overflow-x: auto; max-width: 1100px; margin: 0 auto 80px; padding: 0 20px; }
-        
         table { width: 100%; border-collapse: collapse; background: var(--dark-overlay); border-radius: 15px; overflow: hidden; }
-        
         th { background: var(--primary-blue); color: #000; padding: 18px; font-size: 16px; }
-        
         td { padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); text-align: center; }
-        
         .feature-name { text-align: start; color: var(--success-green); font-weight: bold; }
+        .fa-check { color: var(--success-green); }
 
         footer { text-align: center; padding: 40px; background: rgba(0,0,0,0.9); font-size: 15px; border-top: 1px solid rgba(0,210,255,0.2); }
 
@@ -158,36 +149,11 @@
 
 <h2 class="section-title" data-key="ranks_title">💎 الرتب المدفوعة</h2>
 <div class="grid-container">
-    <div class="item-card">
-        <img src="https://mayorstudio.xyz/i/hMW1/Netherite_Ingot_JE1_BE2.png" class="item-img">
-        <h3>ALASKA+</h3>
-        <span class="price-tag">$12</span>
-        <a href="https://discord.gg/alaskamc" class="buy-btn" data-key="buy">شراء الآن</a>
-    </div>
-    <div class="item-card">
-        <img src="https://minecraft.wiki/images/Diamond_JE3_BE3.png" class="item-img">
-        <h3>ALASKA</h3>
-        <span class="price-tag">$8</span>
-        <a href="https://discord.gg/alaskamc" class="buy-btn" data-key="buy">شراء الآن</a>
-    </div>
-    <div class="item-card">
-        <img src="https://minecraft.wiki/images/Gold_Ingot_JE4_BE2.png" class="item-img">
-        <h3>ELITE</h3>
-        <span class="price-tag">$5</span>
-        <a href="https://discord.gg/alaskamc" class="buy-btn" data-key="buy">شراء الآن</a>
-    </div>
-    <div class="item-card">
-        <img src="https://mayorstudio.xyz/i/oxUk/Iron_Ingot_JE3_BE2.png" class="item-img">
-        <h3>VIP+</h3>
-        <span class="price-tag">$3</span>
-        <a href="https://discord.gg/alaskamc" class="buy-btn" data-key="buy">شراء الآن</a>
-    </div>
-    <div class="item-card">
-        <img src="https://minecraft.wiki/images/Coal_JE4_BE3.png" class="item-img">
-        <h3>VIP</h3>
-        <span class="price-tag">$2</span>
-        <a href="https://discord.gg/alaskamc" class="buy-btn" data-key="buy">شراء الآن</a>
-    </div>
+    <div class="item-card"><img src="https://mayorstudio.xyz/i/hMW1/Netherite_Ingot_JE1_BE2.png" class="item-img"><h3>ALASKA+</h3><span class="price-tag">$12</span><a href="https://discord.gg/alaskamc" class="buy-btn" data-key="buy">شراء الآن</a></div>
+    <div class="item-card"><img src="https://minecraft.wiki/images/Diamond_JE3_BE3.png" class="item-img"><h3>ALASKA</h3><span class="price-tag">$8</span><a href="https://discord.gg/alaskamc" class="buy-btn" data-key="buy">شراء الآن</a></div>
+    <div class="item-card"><img src="https://minecraft.wiki/images/Gold_Ingot_JE4_BE2.png" class="item-img"><h3>ELITE</h3><span class="price-tag">$5</span><a href="https://discord.gg/alaskamc" class="buy-btn" data-key="buy">شراء الآن</a></div>
+    <div class="item-card"><img src="https://mayorstudio.xyz/i/oxUk/Iron_Ingot_JE3_BE2.png" class="item-img"><h3>VIP+</h3><span class="price-tag">$3</span><a href="https://discord.gg/alaskamc" class="buy-btn" data-key="buy">شراء الآن</a></div>
+    <div class="item-card"><img src="https://minecraft.wiki/images/Coal_JE4_BE3.png" class="item-img"><h3>VIP</h3><span class="price-tag">$2</span><a href="https://discord.gg/alaskamc" class="buy-btn" data-key="buy">شراء الآن</a></div>
 </div>
 
 <h2 class="section-title" data-key="features_title">📊 مميزات الرتب</h2>
@@ -206,43 +172,27 @@
         <tbody>
             <tr>
                 <td class="feature-name" data-key="p1">طيران في السباون (/Fly)</td>
-                <td><i class="fas fa-check"></i></td>
-                <td><i class="fas fa-check"></i></td>
-                <td><i class="fas fa-check"></i></td>
-                <td><i class="fas fa-check"></i></td>
-                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td>
             </tr>
             <tr>
                 <td class="feature-name" data-key="p2">أمر الدوران (/Spin)</td>
-                <td><i class="fas fa-check"></i></td>
-                <td><i class="fas fa-check"></i></td>
-                <td><i class="fas fa-check"></i></td>
-                <td><i class="fas fa-check"></i></td>
-                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td>
             </tr>
             <tr>
                 <td class="feature-name" data-key="p3">دخول السيرفر الممتلئ</td>
-                <td><i class="fas fa-check"></i></td>
-                <td><i class="fas fa-check"></i></td>
-                <td><i class="fas fa-check"></i></td>
-                <td><i class="fas fa-check"></i></td>
-                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td>
+            </tr>
+            <tr>
+                <td class="feature-name" data-key="p6">كيت خاص (Special Kit)</td>
+                <td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td>
             </tr>
             <tr>
                 <td class="feature-name" data-key="p4">بريفكس خاص (Prefix)</td>
-                <td><i class="fas fa-check"></i></td>
-                <td><i class="fas fa-check"></i></td>
-                <td><i class="fas fa-check"></i></td>
-                <td><i class="fas fa-check"></i></td>
-                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td>
             </tr>
             <tr>
                 <td class="feature-name" data-key="p5">لون شات مميز</td>
-                <td><i class="fas fa-check"></i></td>
-                <td><i class="fas fa-check"></i></td>
-                <td><i class="fas fa-check"></i></td>
-                <td><i class="fas fa-check"></i></td>
-                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td><td><i class="fas fa-check"></i></td>
             </tr>
         </tbody>
     </table>
@@ -250,24 +200,25 @@
 
 <h2 class="section-title" data-key="tools_title">🛠️ الأدوات</h2>
 <div class="grid-container">
-    <div class="item-card"><img src="https://minecraft.wiki/images/Netherite_Pickaxe_JE3_BE2.png" class="item-img"><h3>Alaska Drill</h3><span class="price-tag">$2</span><a href="#" class="buy-btn" data-key="buy">شراء الآن</a></div>
-    <div class="item-card"><img src="https://minecraft.wiki/images/Netherite_Axe_JE2_BE2.png" class="item-img"><h3>Alaska Axe</h3><span class="price-tag">$2</span><a href="#" class="buy-btn" data-key="buy">شراء الآن</a></div>
-    <div class="item-card"><img src="https://mayorstudio.xyz/i/OQub/Netherite_Shovel_JE2_BE1.png" class="item-img"><h3>Alaska Shovel</h3><span class="price-tag">$2</span><a href="#" class="buy-btn" data-key="buy">شراء الآن</a></div>
+    <div class="item-card"><img src="https://minecraft.wiki/images/Netherite_Pickaxe_JE3_BE2.png" class="item-img"><h3>Alaska Drill</h3><span class="price-tag">$2</span><a href="https://discord.gg/alaskamc" class="buy-btn" data-key="buy">شراء الآن</a></div>
+    <div class="item-card"><img src="https://minecraft.wiki/images/Netherite_Axe_JE2_BE2.png" class="item-img"><h3>Alaska Axe</h3><span class="price-tag">$2</span><a href="https://discord.gg/alaskamc" class="buy-btn" data-key="buy">شراء الآن</a></div>
+    <div class="item-card"><img src="https://mayorstudio.xyz/i/OQub/Netherite_Shovel_JE2_BE1.png" class="item-img"><h3>Alaska Shovel</h3><span class="price-tag">$2</span><a href="https://discord.gg/alaskamc" class="buy-btn" data-key="buy">شراء الآن</a></div>
 </div>
 
 <footer><p>Alaska Network © 2026</p></footer>
 
 <script>
-    // نظام الترجمة
     const translations = {
         ar: {
             home: "الرئيسية", discord: "ديسكورد", ranks_title: "💎 الرتب المدفوعة", features_title: "📊 مميزات الرتب", tools_title: "🛠️ الأدوات",
-            buy: "شراء الآن", t_perk: "المميزات", p1: "طيران في السباون (/Fly)", p2: "أمر الدوران (/Spin)", p3: "دخول السيرفر الممتلئ", p4: "بريفكس خاص (Prefix)", p5: "لون شات مميز",
+            buy: "شراء الآن", t_perk: "المميزات", p1: "طيران في السباون (/Fly)", p2: "أمر الدوران (/Spin)", p3: "دخول السيرفر الممتلئ", 
+            p4: "بريفكس خاص (Prefix)", p5: "لون شات مميز", p6: "كيت خاص (Special Kit)",
             langBtn: "EN", copied: "تم النسخ!"
         },
         en: {
             home: "Home", discord: "Discord", ranks_title: "💎 Paid Ranks", features_title: "📊 Rank Features", tools_title: "🛠️ Tools",
-            buy: "Buy Now", t_perk: "Perks", p1: "Hub Fly (/Fly)", p2: "Spin Command (/Spin)", p3: "Join Full Server", p4: "Special Prefix", p5: "Special Chat Color",
+            buy: "Buy Now", t_perk: "Perks", p1: "Hub Fly (/Fly)", p2: "Spin Command (/Spin)", p3: "Join Full Server", 
+            p4: "Special Prefix", p5: "Special Chat Color", p6: "Special Kit",
             langBtn: "AR", copied: "Copied!"
         }
     };
@@ -276,14 +227,11 @@
     function toggleLanguage() {
         currentLang = currentLang === 'ar' ? 'en' : 'ar';
         document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-        document.querySelectorAll('[data-key]').forEach(el => {
-            el.innerText = translations[currentLang][el.getAttribute('data-key')];
-        });
+        document.querySelectorAll('[data-key]').forEach(el => { el.innerText = translations[currentLang][el.getAttribute('data-key')]; });
         document.getElementById('lang-btn').innerText = translations[currentLang].langBtn;
         document.getElementById('copy-msg').innerText = translations[currentLang].copied;
     }
 
-    // وظيفة النسخ
     function copyIP() {
         const ip = "alaskamc.ddns.net:26378";
         navigator.clipboard.writeText(ip).then(() => {
@@ -293,7 +241,6 @@
         });
     }
 
-    // تأثير الثلج
     function createSnowflake() {
         const snowflake = document.createElement('div');
         snowflake.innerHTML = '❄';
@@ -305,6 +252,5 @@
     }
     setInterval(createSnowflake, 150);
 </script>
-
 </body>
 </html>
